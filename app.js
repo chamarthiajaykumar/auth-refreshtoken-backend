@@ -30,7 +30,7 @@ app.use("/api/v1/users", logoutRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: "Welcome to the practise App",
+    message: "Welcome to the Auth Refresh Token App",
   });
 });
 

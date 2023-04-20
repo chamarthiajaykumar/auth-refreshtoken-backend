@@ -42,7 +42,10 @@ const createSendToken = (user, refreshToken, statusCode, res) => {
     status: "success",
     accessToken,
     data: {
-      user,
+      userInfo: {
+        name: user.name,
+        email: user.email,
+      },
     },
   });
 };
@@ -75,8 +78,6 @@ exports.signup = catchAsync(async (req, res, next) => {
 exports.login = catchAsync(async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-
-  console.log(email, password);
 
   if (!email || !password) {
     return next(new AppError("Please provide email and password", 400));
@@ -122,8 +123,6 @@ exports.protect = catchAsync(async (req, res, next) => {
   if (!freshUser) {
     next(new AppError(`The token belonging to the user doesn't exist`, 401));
   }
-
-  console.log("user is present");
 
   // GRANT ACCESS
   req.user = freshUser;
