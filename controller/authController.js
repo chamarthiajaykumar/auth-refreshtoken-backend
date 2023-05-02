@@ -20,7 +20,7 @@ const signRefreshToken = (id) => {
 
 const cookieOptions = {
   expires: new Date(Date.now() + 86400000),
-  httpOnly: true,
+  httpOnly: false,
 };
 
 const createSendToken = (user, refreshToken, statusCode, res) => {
