@@ -9,30 +9,7 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// CORS // Access-Control-Allow-Origin * (all users)
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET,PUT,PATCH,POST,DELETE,OPTIONS"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
-  );
-  next();
-});
-
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
-
-app.options("*", cors());
+app.use(cors());
 
 app.use(express.json());
 
